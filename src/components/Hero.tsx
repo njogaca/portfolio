@@ -16,7 +16,7 @@ const codeLines = [
   { content: '  <span class="syntax-variable">name</span><span class="syntax-punctuation">:</span> <span class="syntax-string">"Johan Garcia"</span><span class="syntax-punctuation">,</span>' },
   { content: '  <span class="syntax-variable">role</span><span class="syntax-punctuation">:</span> <span class="syntax-string">"Integration Engineer"</span><span class="syntax-punctuation">,</span>' },
   { content: '  <span class="syntax-variable">experience</span><span class="syntax-punctuation">:</span> <span class="syntax-number">8</span><span class="syntax-punctuation">,</span>' },
-  { content: '  <span class="syntax-variable">stack</span><span class="syntax-punctuation">:</span> <span class="syntax-bracket">[</span><span class="syntax-string">"IBM MQ"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"Docker"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"OpenShift"</span><span class="syntax-bracket">]</span><span class="syntax-punctuation">,</span>' },
+  { content: '  <span class="syntax-variable">stack</span><span class="syntax-punctuation">:</span> <span class="syntax-bracket">[</span><span class="syntax-string">"IIB"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"MQ"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"Python"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"Claude"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"Linux"</span><span class="syntax-bracket">]</span><span class="syntax-punctuation">,</span>' },
   { content: '<span class="syntax-bracket">}</span><span class="syntax-punctuation">;</span>' },
 ];
 

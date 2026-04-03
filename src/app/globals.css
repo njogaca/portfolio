@@ -1,26 +1,222 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #060b08;
+  --color-foreground: #d4e4d8;
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #3d8b5e;
+  --color-green-600: #2d7a4a;
+  --color-green-700: #1e6638;
+  --color-green-800: #166534;
+  --color-green-900: #14532d;
+  --color-dark-50: #d4e4d8;
+  --color-dark-100: #7a9982;
+  --color-dark-200: #2a4a33;
+  --color-dark-300: #1a2e1f;
+  --color-dark-400: #111f16;
+  --color-dark-500: #0c1610;
+  --color-dark-600: #060b08;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-dark-600);
+  color: var(--color-dark-50);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-green-500);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dark-600);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-200);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-green-500);
+}
+
+/* Scanline overlay */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* Grid overlay for hero */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(61, 139, 94, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61, 139, 94, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* Terminal window */
+.terminal-window {
+  background: var(--color-dark-500);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--color-dark-400);
+  border-bottom: 1px solid var(--color-dark-300);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.terminal-dot.red { background: #ff5f57; }
+.terminal-dot.yellow { background: #febc2e; }
+.terminal-dot.green { background: #28c840; }
+
+.terminal-title {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-dark-100);
+}
+
+.terminal-body {
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+/* Code syntax colors */
+.syntax-keyword { color: #c678dd; }
+.syntax-string { color: #98c379; }
+.syntax-type { color: #56b6c2; }
+.syntax-function { color: #61afef; }
+.syntax-comment { color: #5c6370; font-style: italic; }
+.syntax-number { color: #d19a66; }
+.syntax-variable { color: #e06c75; }
+.syntax-operator { color: #56b6c2; }
+.syntax-bracket { color: var(--color-dark-100); }
+.syntax-punctuation { color: var(--color-dark-100); }
+
+/* Typing cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--color-green-400);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Pulse animation for status dot */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(61, 139, 94, 0.6); }
+  50% { box-shadow: 0 0 0 6px rgba(61, 139, 94, 0); }
+}
+
+.status-pulse {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* Glow effect */
+.glow-green {
+  box-shadow: 0 0 20px rgba(61, 139, 94, 0.15), 0 0 60px rgba(61, 139, 94, 0.05);
+}
+
+.glow-green-strong {
+  box-shadow: 0 0 30px rgba(61, 139, 94, 0.25), 0 0 80px rgba(61, 139, 94, 0.1);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-green-400), var(--color-green-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Line numbers */
+.line-number {
+  color: var(--color-dark-200);
+  user-select: none;
+  text-align: right;
+  min-width: 2ch;
+  padding-right: 16px;
+}
+
+/* Slide in animation */
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in-up 0.6s ease-out forwards;
+}
+
+/* Git log styling */
+.git-hash {
+  color: #d19a66;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.git-branch {
+  color: var(--color-green-400);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.git-stat-add {
+  color: var(--color-green-400);
+}
+
+.git-stat-del {
+  color: #e06c75;
 }

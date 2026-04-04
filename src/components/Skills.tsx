@@ -47,7 +47,7 @@ export default function Skills() {
               <span className="terminal-dot yellow" />
               <span className="terminal-dot green" />
               <span className="terminal-title">
-                skills_universe.exe — drag to explore
+                skills_constellation.exe — hover to explore
               </span>
             </div>
             <div className="h-[400px] md:h-[500px] relative">

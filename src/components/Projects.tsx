@@ -56,61 +56,98 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, i) => (
             <AnimateOnScroll key={project.name} delay={i * 100}>
-              <div className="terminal-window h-full hover:border-green-500/30 transition-all group">
-                <div className="terminal-header">
-                  <span className="terminal-dot red" />
-                  <span className="terminal-dot yellow" />
-                  <span className="terminal-dot green" />
-                  <span className="terminal-title">
-                    {project.name.toLowerCase().replace(/\s/g, "-")}
-                  </span>
-                </div>
-                <div className="terminal-body flex flex-col h-full">
-                  <div className="flex items-start gap-3 mb-3">
-                    <span className="text-green-400 shrink-0 mt-0.5">
-                      {project.icon}
+              {"url" in project && project.url ? (
+                <a
+                  href={project.url as string}
+                  {...(!(project.url as string).startsWith("/") && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
+                  className="block terminal-window h-full hover:border-green-500/30 transition-all group cursor-pointer"
+                >
+                  <div className="terminal-header">
+                    <span className="terminal-dot red" />
+                    <span className="terminal-dot yellow" />
+                    <span className="terminal-dot green" />
+                    <span className="terminal-title">
+                      {project.name.toLowerCase().replace(/\s/g, "-")}
                     </span>
-                    <div>
-                      <h4 className="font-semibold text-dark-50 group-hover:text-green-400 transition-colors">
-                        {project.name}
-                      </h4>
-                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono mt-1 border border-green-500/30 text-green-400 bg-green-500/5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 status-pulse" />
-                        {project.status}
+                  </div>
+                  <div className="terminal-body flex flex-col h-full">
+                    <div className="flex items-start gap-3 mb-3">
+                      <span className="text-green-400 shrink-0 mt-0.5">
+                        {project.icon}
                       </span>
+                      <div>
+                        <h4 className="font-semibold text-dark-50 group-hover:text-green-400 transition-colors">
+                          {project.name}
+                        </h4>
+                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono mt-1 border border-green-500/30 text-green-400 bg-green-500/5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 status-pulse" />
+                          {project.status}
+                        </span>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-dark-50/80 leading-relaxed mb-4 flex-1">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-dark-300">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded text-xs font-mono bg-dark-400 text-dark-100 border border-dark-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
-
-                  <p className="text-sm text-dark-50/80 leading-relaxed mb-4 flex-1">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-dark-300">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 rounded text-xs font-mono bg-dark-400 text-dark-100 border border-dark-300"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                </a>
+              ) : (
+                <div className="terminal-window h-full hover:border-green-500/30 transition-all group">
+                  <div className="terminal-header">
+                    <span className="terminal-dot red" />
+                    <span className="terminal-dot yellow" />
+                    <span className="terminal-dot green" />
+                    <span className="terminal-title">
+                      {project.name.toLowerCase().replace(/\s/g, "-")}
+                    </span>
                   </div>
+                  <div className="terminal-body flex flex-col h-full">
+                    <div className="flex items-start gap-3 mb-3">
+                      <span className="text-green-400 shrink-0 mt-0.5">
+                        {project.icon}
+                      </span>
+                      <div>
+                        <h4 className="font-semibold text-dark-50 group-hover:text-green-400 transition-colors">
+                          {project.name}
+                        </h4>
+                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono mt-1 border border-green-500/30 text-green-400 bg-green-500/5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 status-pulse" />
+                          {project.status}
+                        </span>
+                      </div>
+                    </div>
 
-                  {"url" in project && project.url && (
-                    <a
-                      href={project.url as string}
-                      {...(!(project.url as string).startsWith("/") && {
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                      })}
-                      className="flex items-center gap-1.5 mt-3 text-xs font-mono text-green-400 hover:underline"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                      View Project
-                    </a>
-                  )}
+                    <p className="text-sm text-dark-50/80 leading-relaxed mb-4 flex-1">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-dark-300">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded text-xs font-mono bg-dark-400 text-dark-100 border border-dark-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </AnimateOnScroll>
           ))}
 

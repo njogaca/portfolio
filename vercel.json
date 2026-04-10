@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/projects/dfdl-parser",
+      "destination": "https://dfdl-parser.vercel.app/projects/dfdl-parser"
+    },
+    {
+      "source": "/projects/dfdl-parser/:path*",
+      "destination": "https://dfdl-parser.vercel.app/projects/dfdl-parser/:path*"
+    }
+  ]
+}

@@ -7,6 +7,14 @@
     {
       "source": "/projects/dfdl-parser/:path*",
       "destination": "https://dfdl-parser.vercel.app/projects/dfdl-parser/:path*"
+    },
+    {
+      "source": "/projects/docker-compose-gen",
+      "destination": "https://docker-compose-gen.vercel.app/projects/docker-compose-gen"
+    },
+    {
+      "source": "/projects/docker-compose-gen/:path*",
+      "destination": "https://docker-compose-gen.vercel.app/projects/docker-compose-gen/:path*"
     }
   ]
 }

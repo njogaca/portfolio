@@ -20,6 +20,22 @@ const projects = [
     ),
   },
   {
+    name: "Docker Compose Gen",
+    description:
+      "Visual generator for docker-compose.yml files. Select from 19 pre-configured services (databases, cache, messaging, monitoring), configure ports, volumes and env vars, then export your compose file instantly.",
+    tags: ["Next.js", "TypeScript", "Docker", "DevTools"],
+    status: "Live",
+    url: "/projects/docker-compose-gen",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+        <line x1="6" y1="6" x2="6.01" y2="6"/>
+        <line x1="6" y1="18" x2="6.01" y2="18"/>
+      </svg>
+    ),
+  },
+  {
     name: "ContractLens AI",
     description:
       "A free AI-powered tool that analyzes PDF documents — especially contracts — and explains to users in plain language what they are agreeing to, highlighting potential risks and key clauses.",

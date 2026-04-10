@@ -4,11 +4,27 @@ import AnimateOnScroll from "./AnimateOnScroll";
 
 const projects = [
   {
+    name: "DFDL Parser",
+    description:
+      "A web-based tool for parsing flat files and BLOBs into structured data using editable DFDL schemas. Supports fixed-length and delimited formats, real-time error detection, and export to JSON or DFDL XML.",
+    tags: ["Next.js", "TypeScript", "DFDL", "IBM IIB/ACE", "Parsing"],
+    status: "Live",
+    url: "https://github.com/njogaca/dfdl-parser",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+      </svg>
+    ),
+  },
+  {
     name: "ContractLens AI",
     description:
       "A free AI-powered tool that analyzes PDF documents — especially contracts — and explains to users in plain language what they are agreeing to, highlighting potential risks and key clauses.",
     tags: ["Python", "AI/ML", "PDF Processing", "NLP", "Next.js"],
-    status: "In Development",
+    status: "Planned",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -79,6 +95,18 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
+
+                  {"url" in project && project.url && (
+                    <a
+                      href={project.url as string}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 mt-3 text-xs font-mono text-green-400 hover:underline"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      View Project
+                    </a>
+                  )}
                 </div>
               </div>
             </AnimateOnScroll>

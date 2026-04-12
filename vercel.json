@@ -15,6 +15,14 @@
     {
       "source": "/projects/docker-compose-gen/:path*",
       "destination": "https://docker-compose-gen.vercel.app/projects/docker-compose-gen/:path*"
+    },
+    {
+      "source": "/projects/cobol-mapper",
+      "destination": "https://cobol-mapper.vercel.app/projects/cobol-mapper"
+    },
+    {
+      "source": "/projects/cobol-mapper/:path*",
+      "destination": "https://cobol-mapper.vercel.app/projects/cobol-mapper/:path*"
     }
   ]
 }

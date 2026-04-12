@@ -20,6 +20,21 @@ const projects = [
     ),
   },
   {
+    name: "COBOL Copybook Mapper",
+    description:
+      "Map COBOL flat file records against a copybook. Parses PIC clauses (X, 9, COMP-3, BINARY), calculates field offsets, and visualizes every byte color-coded. Edit the copybook inline — add, move, delete fields or FILLERs — and download the modified copy.",
+    tags: ["Next.js", "TypeScript", "COBOL", "IBM IIB/ACE", "Parsing"],
+    status: "Live",
+    url: "/projects/cobol-mapper",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+    ),
+  },
+  {
     name: "Docker Compose Gen",
     description:
       "Visual generator for docker-compose.yml files. Select from 19 pre-configured services (databases, cache, messaging, monitoring), configure ports, volumes and env vars, then export your compose file instantly.",

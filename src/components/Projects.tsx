@@ -51,6 +51,20 @@ const projects = [
     ),
   },
   {
+    name: "RetoHabitos",
+    description:
+      "App de seguimiento de hábitos y retos personales. Permite crear retos, registrar el progreso diario y mantener rachas de consistencia para construir mejores hábitos.",
+    tags: ["Habit Tracking", "Productivity", "Web App"],
+    status: "Live",
+    url: "https://retohabitos.com",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    ),
+  },
+  {
     name: "ContractLens AI",
     description:
       "A free AI-powered tool that analyzes PDF documents — especially contracts — and explains to users in plain language what they are agreeing to, highlighting potential risks and key clauses.",

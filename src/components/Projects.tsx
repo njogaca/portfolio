@@ -53,8 +53,8 @@ const projects = [
   {
     name: "RetoHabitos",
     description:
-      "App de seguimiento de hábitos y retos personales. Permite crear retos, registrar el progreso diario y mantener rachas de consistencia para construir mejores hábitos.",
-    tags: ["Habit Tracking", "Productivity", "Web App"],
+      "Crea retos de hábitos y desafía a tus amigos, pareja o conocidos — o a ti mismo. Seguimiento diario de progreso, rachas y notificaciones para mantener la motivación. Construida con Claude Code.",
+    tags: ["Next.js", "Supabase", "Resend", "Vercel", "Productivity"],
     status: "Live",
     url: "https://retohabitos.com",
     icon: (

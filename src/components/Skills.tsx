@@ -28,7 +28,7 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="min-h-screen flex items-center py-24">
+    <section id="skills" className="py-20 md:py-24">
       <div className="max-w-6xl mx-auto px-6 w-full">
         <AnimateOnScroll>
           <h2 className="font-mono text-green-400 text-sm mb-2">

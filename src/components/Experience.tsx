@@ -81,7 +81,7 @@ const jobs = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="min-h-screen flex items-center py-24">
+    <section id="experience" className="py-20 md:py-24">
       <div className="max-w-4xl mx-auto px-6 w-full">
         <AnimateOnScroll>
           <h2 className="font-mono text-green-400 text-sm mb-2">

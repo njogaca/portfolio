@@ -1,23 +1,35 @@
 "use client";
 
-import TypeWriter from "./TypeWriter";
+import TypeWriter, { type TokenLine } from "./TypeWriter";
 
-const codeLines = [
-  { content: '<span class="syntax-keyword">import</span> <span class="syntax-bracket">{</span> <span class="syntax-variable">Engineer</span> <span class="syntax-bracket">}</span> <span class="syntax-keyword">from</span> <span class="syntax-string">"@colombia/atlanta"</span><span class="syntax-punctuation">;</span>' },
-  { content: "" },
-  { content: '<span class="syntax-keyword">interface</span> <span class="syntax-type">Profile</span> <span class="syntax-bracket">{</span>' },
-  { content: '  <span class="syntax-variable">name</span><span class="syntax-punctuation">:</span> <span class="syntax-type">string</span><span class="syntax-punctuation">;</span>' },
-  { content: '  <span class="syntax-variable">role</span><span class="syntax-punctuation">:</span> <span class="syntax-type">string</span><span class="syntax-punctuation">;</span>' },
-  { content: '  <span class="syntax-variable">experience</span><span class="syntax-punctuation">:</span> <span class="syntax-type">number</span><span class="syntax-punctuation">;</span>' },
-  { content: '  <span class="syntax-variable">stack</span><span class="syntax-punctuation">:</span> <span class="syntax-type">string</span><span class="syntax-bracket">[]</span><span class="syntax-punctuation">;</span>' },
-  { content: '<span class="syntax-bracket">}</span>' },
-  { content: "" },
-  { content: '<span class="syntax-keyword">const</span> <span class="syntax-function">johan</span><span class="syntax-punctuation">:</span> <span class="syntax-type">Profile</span> <span class="syntax-operator">=</span> <span class="syntax-bracket">{</span>' },
-  { content: '  <span class="syntax-variable">name</span><span class="syntax-punctuation">:</span> <span class="syntax-string">"Johan Garcia"</span><span class="syntax-punctuation">,</span>' },
-  { content: '  <span class="syntax-variable">role</span><span class="syntax-punctuation">:</span> <span class="syntax-string">"Integration Engineer"</span><span class="syntax-punctuation">,</span>' },
-  { content: '  <span class="syntax-variable">experience</span><span class="syntax-punctuation">:</span> <span class="syntax-number">8</span><span class="syntax-punctuation">,</span>' },
-  { content: '  <span class="syntax-variable">stack</span><span class="syntax-punctuation">:</span> <span class="syntax-bracket">[</span><span class="syntax-string">"IIB"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"MQ"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"Python"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"Claude"</span><span class="syntax-punctuation">,</span> <span class="syntax-string">"Linux"</span><span class="syntax-bracket">]</span><span class="syntax-punctuation">,</span>' },
-  { content: '<span class="syntax-bracket">}</span><span class="syntax-punctuation">;</span>' },
+// Shorthand token helpers
+const k  = (text: string) => ({ text, cls: "syntax-keyword" });
+const t  = (text: string) => ({ text, cls: "syntax-type" });
+const v  = (text: string) => ({ text, cls: "syntax-variable" });
+const s  = (text: string) => ({ text, cls: "syntax-string" });
+const n  = (text: string) => ({ text, cls: "syntax-number" });
+const p  = (text: string) => ({ text, cls: "syntax-punctuation" });
+const b  = (text: string) => ({ text, cls: "syntax-bracket" });
+const op = (text: string) => ({ text, cls: "syntax-operator" });
+const fn = (text: string) => ({ text, cls: "syntax-function" });
+const sp = (text: string) => ({ text });
+
+const codeLines: TokenLine[] = [
+  [k("import"), sp(" "), b("{"), sp(" "), v("Engineer"), sp(" "), b("}"), sp(" "), k("from"), sp(" "), s('"@colombia/atlanta"'), p(";")],
+  [],
+  [k("interface"), sp(" "), t("Profile"), sp(" "), b("{")],
+  [sp("  "), v("name"), p(":"), sp(" "), t("string"), p(";")],
+  [sp("  "), v("role"), p(":"), sp(" "), t("string"), p(";")],
+  [sp("  "), v("experience"), p(":"), sp(" "), t("number"), p(";")],
+  [sp("  "), v("stack"), p(":"), sp(" "), t("string"), b("[]"), p(";")],
+  [b("}")],
+  [],
+  [k("const"), sp(" "), fn("johan"), p(":"), sp(" "), t("Profile"), sp(" "), op("="), sp(" "), b("{")],
+  [sp("  "), v("name"), p(":"), sp(" "), s('"Johan Garcia"'), p(",")],
+  [sp("  "), v("role"), p(":"), sp(" "), s('"Integration Engineer"'), p(",")],
+  [sp("  "), v("experience"), p(":"), sp(" "), n("8"), p(",")],
+  [sp("  "), v("stack"), p(":"), sp(" "), b("["), s('"IIB"'), p(","), sp(" "), s('"MQ"'), p(","), sp(" "), s('"Python"'), p(","), sp(" "), s('"Claude"'), p(","), sp(" "), s('"Linux"'), b("]"), p(",")],
+  [b("}"), p(";")],
 ];
 
 const techBadges = [
@@ -97,7 +109,7 @@ export default function Hero() {
             <span className="terminal-title">portfolio.tsx</span>
           </div>
           <div className="terminal-body">
-            <TypeWriter lines={codeLines} speed={25} startDelay={800} />
+            <TypeWriter lines={codeLines} speed={18} startDelay={400} linePause={60} />
           </div>
         </div>
       </div>

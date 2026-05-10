@@ -278,23 +278,6 @@ export default function Contact() {
           </AnimateOnScroll>
         </div>
 
-        {/* Footer */}
-        <div className="mt-20 pt-8 border-t border-dark-300 text-center">
-          <p className="font-mono text-xs text-dark-100">
-            &copy; 2026 Johan Fernando Garcia Casas &nbsp;|&nbsp; Powered by{" "}
-            <a
-              href="https://claude.ai/claude-code"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-400 hover:underline"
-            >
-              Claude Code
-            </a>
-          </p>
-          <p className="font-mono text-xs text-dark-200 mt-2">
-            {`while(alive) { code(); }`}
-          </p>
-        </div>
       </div>
 
       {/* WhatsApp floating button — terminal-themed, mobile-first */}

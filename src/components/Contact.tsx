@@ -1,17 +1,82 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        element: HTMLElement,
+        options: {
+          sitekey: string;
+          theme?: string;
+          callback?: (token: string) => void;
+          "expired-callback"?: () => void;
+          "error-callback"?: () => void;
+        }
+      ) => string;
+      reset: (widgetId?: string) => void;
+    };
+  }
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    company: "", // honeypot — humans never fill this
   });
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return;
+
+    const renderWidget = () => {
+      if (
+        window.turnstile &&
+        turnstileRef.current &&
+        widgetIdRef.current === null
+      ) {
+        widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: "dark",
+          callback: (token) => setTurnstileToken(token),
+          "expired-callback": () => setTurnstileToken(""),
+          "error-callback": () => setTurnstileToken(""),
+        });
+      }
+    };
+
+    const scriptId = "cf-turnstile-script";
+    const existing = document.getElementById(scriptId);
+    if (existing) {
+      renderWidget();
+      return;
+    }
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.src =
+      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.async = true;
+    script.onload = renderWidget;
+    document.head.appendChild(script);
+  }, []);
+
+  const resetTurnstile = () => {
+    if (TURNSTILE_SITE_KEY && window.turnstile && widgetIdRef.current) {
+      window.turnstile.reset(widgetIdRef.current);
+      setTurnstileToken("");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,12 +86,12 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken }),
       });
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", company: "" });
         setTimeout(() => setStatus("idle"), 5000);
       } else {
         setStatus("error");
@@ -35,8 +100,12 @@ export default function Contact() {
     } catch {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 4000);
+    } finally {
+      resetTurnstile();
     }
   };
+
+  const waitingForTurnstile = Boolean(TURNSTILE_SITE_KEY) && !turnstileToken;
 
   return (
     <section id="contact" className="py-20 md:py-24">
@@ -73,17 +142,6 @@ export default function Contact() {
                       className="syntax-string hover:underline"
                     >
                       &quot;jfgc1394@gmail.com&quot;
-                    </a>
-                    <span className="syntax-punctuation">,</span>
-                  </p>
-                  <p className="pl-4">
-                    <span className="syntax-variable">&quot;phone&quot;</span>
-                    <span className="syntax-punctuation">: </span>
-                    <a
-                      href="tel:+19546756464"
-                      className="syntax-string hover:underline"
-                    >
-                      &quot;(+1) 954-675-6464&quot;
                     </a>
                     <span className="syntax-punctuation">,</span>
                   </p>
@@ -184,14 +242,35 @@ export default function Contact() {
                     </span>
                   </div>
 
+                  {/* Honeypot — visually hidden, bots fill it, humans don't */}
+                  <div className="absolute -left-[9999px] top-auto" aria-hidden="true">
+                    <label htmlFor="contact-company">Company</label>
+                    <input
+                      type="text"
+                      id="contact-company"
+                      name="company"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.company}
+                      onChange={(e) =>
+                        setFormData({ ...formData, company: e.target.value })
+                      }
+                    />
+                  </div>
+
                   <div>
-                    <label className="block font-mono text-xs text-dark-100 mb-1.5">
+                    <label
+                      htmlFor="contact-name"
+                      className="block font-mono text-xs text-dark-100 mb-1.5"
+                    >
                       <span className="syntax-keyword">const</span>{" "}
                       <span className="syntax-variable">name</span>{" "}
                       <span className="syntax-operator">=</span>
                     </label>
                     <input
                       type="text"
+                      id="contact-name"
+                      name="name"
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
@@ -199,18 +278,24 @@ export default function Contact() {
                       className="w-full px-4 py-2.5 rounded-lg bg-dark-600 border border-dark-300 text-dark-50 font-mono text-sm placeholder-dark-200 focus:outline-none focus:border-green-500/50 transition-colors"
                       placeholder='"Your name"'
                       required
+                      maxLength={100}
                       disabled={status === "sending"}
                     />
                   </div>
 
                   <div>
-                    <label className="block font-mono text-xs text-dark-100 mb-1.5">
+                    <label
+                      htmlFor="contact-email"
+                      className="block font-mono text-xs text-dark-100 mb-1.5"
+                    >
                       <span className="syntax-keyword">const</span>{" "}
                       <span className="syntax-variable">email</span>{" "}
                       <span className="syntax-operator">=</span>
                     </label>
                     <input
                       type="email"
+                      id="contact-email"
+                      name="email"
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
@@ -218,17 +303,23 @@ export default function Contact() {
                       className="w-full px-4 py-2.5 rounded-lg bg-dark-600 border border-dark-300 text-dark-50 font-mono text-sm placeholder-dark-200 focus:outline-none focus:border-green-500/50 transition-colors"
                       placeholder='"your@email.com"'
                       required
+                      maxLength={254}
                       disabled={status === "sending"}
                     />
                   </div>
 
                   <div>
-                    <label className="block font-mono text-xs text-dark-100 mb-1.5">
+                    <label
+                      htmlFor="contact-message"
+                      className="block font-mono text-xs text-dark-100 mb-1.5"
+                    >
                       <span className="syntax-keyword">const</span>{" "}
                       <span className="syntax-variable">message</span>{" "}
                       <span className="syntax-operator">=</span>
                     </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       value={formData.message}
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
@@ -237,13 +328,18 @@ export default function Contact() {
                       className="w-full px-4 py-2.5 rounded-lg bg-dark-600 border border-dark-300 text-dark-50 font-mono text-sm placeholder-dark-200 focus:outline-none focus:border-green-500/50 transition-colors resize-none"
                       placeholder='`Your message here...`'
                       required
+                      maxLength={2000}
                       disabled={status === "sending"}
                     />
                   </div>
 
+                  {TURNSTILE_SITE_KEY && (
+                    <div ref={turnstileRef} className="flex justify-center" />
+                  )}
+
                   <button
                     type="submit"
-                    disabled={status === "sending"}
+                    disabled={status === "sending" || waitingForTurnstile}
                     className="w-full py-3 rounded-lg bg-green-600 hover:bg-green-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-mono text-sm font-medium transition-colors flex items-center justify-center gap-2"
                   >
                     {status === "sending" ? (
@@ -251,6 +347,8 @@ export default function Contact() {
                         <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>
                         Executing...
                       </>
+                    ) : waitingForTurnstile ? (
+                      <>Verifying you are human...</>
                     ) : (
                       <>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>

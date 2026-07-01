@@ -17,6 +17,10 @@ const skillCategories = [
     ],
   },
   {
+    level: "AI-Assisted Delivery",
+    skills: ["Claude Code", "Vercel", "Supabase", "Resend"],
+  },
+  {
     level: "Proficient",
     skills: ["Java", "SQL", "COBOL", "Git"],
   },
@@ -65,7 +69,7 @@ export default function Skills() {
         </AnimateOnScroll>
 
         {/* Skill grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((cat, i) => (
             <AnimateOnScroll key={cat.level} delay={200 + i * 100}>
               <div className="p-5 rounded-lg border border-dark-300 bg-dark-500/50 hover:border-green-500/20 transition-colors">

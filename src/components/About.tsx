@@ -6,7 +6,7 @@ const stats = [
   { value: "8+", label: "Years Experience" },
   { value: "500K+", label: "Daily Transactions" },
   { value: "Tier-1", label: "Banking Clients" },
-  { value: "2", label: "Languages" },
+  { value: "4", label: "Live Products" },
 ];
 
 export default function About() {

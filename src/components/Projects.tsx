@@ -64,23 +64,55 @@ const projects = [
       </svg>
     ),
   },
-  {
-    name: "ContractLens AI",
-    description:
-      "A free AI-powered tool that analyzes PDF documents — especially contracts — and explains to users in plain language what they are agreeing to, highlighting potential risks and key clauses.",
-    tags: ["Python", "AI/ML", "PDF Processing", "NLP", "Next.js"],
-    status: "Planned",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="16" y1="13" x2="8" y2="13" />
-        <line x1="16" y1="17" x2="8" y2="17" />
-        <polyline points="10 9 9 9 8 9" />
-      </svg>
-    ),
-  },
 ];
+
+type Project = (typeof projects)[number];
+
+function ProjectCardBody({ project }: { project: Project }) {
+  return (
+    <>
+      <div className="terminal-header">
+        <span className="terminal-dot red" />
+        <span className="terminal-dot yellow" />
+        <span className="terminal-dot green" />
+        <span className="terminal-title">
+          {project.name.toLowerCase().replace(/\s/g, "-")}
+        </span>
+      </div>
+      <div className="terminal-body flex flex-col h-full">
+        <div className="flex items-start gap-3 mb-3">
+          <span className="text-green-400 shrink-0 mt-0.5">
+            {project.icon}
+          </span>
+          <div>
+            <h4 className="font-semibold text-dark-50 group-hover:text-green-400 transition-colors">
+              {project.name}
+            </h4>
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono mt-1 border border-green-500/30 text-green-400 bg-green-500/5">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 status-pulse" />
+              {project.status}
+            </span>
+          </div>
+        </div>
+
+        <p className="text-sm text-dark-50/80 leading-relaxed mb-4 flex-1">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-dark-300">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2 py-0.5 rounded text-xs font-mono bg-dark-400 text-dark-100 border border-dark-300"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
 
 export default function Projects() {
   return (
@@ -110,87 +142,11 @@ export default function Projects() {
                   })}
                   className="block terminal-window h-full hover:border-green-500/30 transition-all group cursor-pointer"
                 >
-                  <div className="terminal-header">
-                    <span className="terminal-dot red" />
-                    <span className="terminal-dot yellow" />
-                    <span className="terminal-dot green" />
-                    <span className="terminal-title">
-                      {project.name.toLowerCase().replace(/\s/g, "-")}
-                    </span>
-                  </div>
-                  <div className="terminal-body flex flex-col h-full">
-                    <div className="flex items-start gap-3 mb-3">
-                      <span className="text-green-400 shrink-0 mt-0.5">
-                        {project.icon}
-                      </span>
-                      <div>
-                        <h4 className="font-semibold text-dark-50 group-hover:text-green-400 transition-colors">
-                          {project.name}
-                        </h4>
-                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono mt-1 border border-green-500/30 text-green-400 bg-green-500/5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 status-pulse" />
-                          {project.status}
-                        </span>
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-dark-50/80 leading-relaxed mb-4 flex-1">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-dark-300">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded text-xs font-mono bg-dark-400 text-dark-100 border border-dark-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  <ProjectCardBody project={project} />
                 </a>
               ) : (
                 <div className="terminal-window h-full hover:border-green-500/30 transition-all group">
-                  <div className="terminal-header">
-                    <span className="terminal-dot red" />
-                    <span className="terminal-dot yellow" />
-                    <span className="terminal-dot green" />
-                    <span className="terminal-title">
-                      {project.name.toLowerCase().replace(/\s/g, "-")}
-                    </span>
-                  </div>
-                  <div className="terminal-body flex flex-col h-full">
-                    <div className="flex items-start gap-3 mb-3">
-                      <span className="text-green-400 shrink-0 mt-0.5">
-                        {project.icon}
-                      </span>
-                      <div>
-                        <h4 className="font-semibold text-dark-50 group-hover:text-green-400 transition-colors">
-                          {project.name}
-                        </h4>
-                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono mt-1 border border-green-500/30 text-green-400 bg-green-500/5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 status-pulse" />
-                          {project.status}
-                        </span>
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-dark-50/80 leading-relaxed mb-4 flex-1">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-dark-300">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded text-xs font-mono bg-dark-400 text-dark-100 border border-dark-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  <ProjectCardBody project={project} />
                 </div>
               )}
             </AnimateOnScroll>

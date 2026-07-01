@@ -4,8 +4,22 @@ import AnimateOnScroll from "./AnimateOnScroll";
 
 const jobs = [
   {
-    hash: "a3f7c1d",
+    hash: "f9d4e8c",
     branch: "main",
+    title: "Independent Builder — AI-Assisted Products",
+    company: "Portfolio Products — johangarcia.dev",
+    period: "2025 — Present",
+    description: [
+      "Designed and shipped 4 live web products using AI-assisted development with Claude Code: DFDL Parser, COBOL Copybook Mapper, Docker Compose Gen, and RetoHabitos.",
+      "Applied integration-domain expertise to specify and validate developer tools that parse COBOL copybooks (PIC clauses, COMP-3, offsets) and DFDL schemas.",
+      "Own the full product lifecycle: requirements, iteration, Vercel deployments, custom domains, transactional email (Resend), and database/auth setup (Supabase).",
+    ],
+    tags: ["Claude Code", "AI-Assisted Dev", "Vercel", "Supabase", "Resend"],
+    stats: { files: 32, insertions: 610, deletions: 95 },
+  },
+  {
+    hash: "a3f7c1d",
+    branch: "chore/relocation",
     title: "Operations Manager",
     company: "Belen de la Cruz Empanadas and Pastries",
     period: "Nov 2023 — Present",

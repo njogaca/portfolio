@@ -62,7 +62,9 @@ export default function About() {
                   </div>
                   <div>
                     <span className="text-dark-100">auth:</span>
-                    <span className="text-green-400 ml-1">US Work Auth</span>
+                    <span className="text-green-400 ml-1">
+                      US — no sponsorship
+                    </span>
                   </div>
                 </div>
 
@@ -71,23 +73,24 @@ export default function About() {
                     $ cat mission.txt
                   </p>
                   <p className="leading-relaxed">
-                    My professional career began in Colombia, where I gained
-                    foundational experience working with COBOL mainframes and
-                    AS400 migrations — developing a strong understanding of
-                    mission-critical systems that require the highest levels of
-                    reliability.
+                    My career began in Colombia with COBOL mainframes and AS/400
+                    migrations — foundational work on mission-critical systems
+                    where reliability is non-negotiable.
                   </p>
                   <p className="leading-relaxed mt-3">
-                    I subsequently transitioned into IBM middleware, spending
-                    nearly three years at IBM, where I designed integration
-                    architectures and mentored development teams.
+                    I moved into IBM middleware and spent 8+ years building and
+                    operating enterprise integration on IIB (v9/v10) and IBM MQ
+                    for Tier-1 banking environments processing 500K+ daily
+                    transactions — ESQL message flows, DFDL/XML message models,
+                    queue manager administration, clustering and channel
+                    security, and service governance through DataPower and WSRR.
                   </p>
                   <p className="leading-relaxed mt-3">
-                    Currently based in Atlanta, I am leveraging my extensive
-                    enterprise background to adopt cloud-native technologies —
-                    containerizing workloads with Docker and OpenShift, and
-                    implementing CI/CD pipelines to modernize the delivery of
-                    integration services.
+                    Now based in Atlanta, I pair that enterprise background with
+                    cloud-native delivery: IIB workloads containerized on Docker
+                    and OpenShift, CI/CD in Azure DevOps, Jenkins and GitHub
+                    Actions, and my AWS Solutions Architect — Associate
+                    certification in progress.
                   </p>
                 </div>
               </div>
@@ -153,7 +156,7 @@ export default function About() {
                       <span className="text-sm">English</span>
                     </div>
                     <span className="text-xs font-mono text-green-400 px-2 py-0.5 rounded bg-green-500/10">
-                      Advanced
+                      Professional
                     </span>
                   </div>
                 </div>
@@ -167,9 +170,10 @@ export default function About() {
                 </p>
                 <ul className="space-y-2 text-sm">
                   {[
-                    "Enterprise middleware architecture",
-                    "Message queue & ESB design",
-                    "API gateway implementation",
+                    "ESQL message flow development",
+                    "IBM MQ administration & clustering",
+                    "DFDL / XML message modeling",
+                    "Service governance (DataPower, WSRR)",
                     "Cloud-native containerization",
                     "CI/CD pipeline automation",
                   ].map((item) => (

@@ -18,14 +18,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Johan Garcia | Integration Engineer",
   description:
-    "Integration Engineer with 8+ years of experience designing middleware solutions for Tier-1 banks. Specializing in cloud-native architectures, API gateways, and enterprise integration.",
+    "Integration Engineer with 8+ years building enterprise middleware on IBM Integration Bus (IIB/ACE) and IBM MQ for Tier-1 banks processing 500K+ daily transactions. ESQL, DFDL, DataPower, Docker, OpenShift and CI/CD. Atlanta, GA.",
   keywords: [
     "Integration Engineer",
     "Middleware",
-    "IBM",
+    "IBM MQ",
+    "IBM Integration Bus",
+    "IIB",
+    "IBM App Connect Enterprise",
+    "ESQL",
+    "DFDL",
+    "IBM DataPower",
+    "WSRR",
     "Cloud Native",
     "Docker",
     "OpenShift",
+    "AWS",
     "API Gateway",
     "ESB",
     "COBOL",
@@ -38,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Johan Garcia | Integration Engineer",
     description:
-      "Integration Engineer with 8+ years of experience designing middleware solutions for Tier-1 banks.",
+      "Integration Engineer with 8+ years building enterprise middleware on IBM Integration Bus and IBM MQ for Tier-1 banks processing 500K+ daily transactions.",
     type: "website",
     url: SITE_URL,
     siteName: "Johan Garcia — Portfolio",
@@ -48,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Johan Garcia | Integration Engineer",
     description:
-      "Integration Engineer with 8+ years of experience designing middleware solutions for Tier-1 banks.",
+      "Integration Engineer with 8+ years building enterprise middleware on IBM Integration Bus and IBM MQ for Tier-1 banks processing 500K+ daily transactions.",
   },
   robots: {
     index: true,
@@ -80,12 +88,30 @@ const personJsonLd = {
     "IBM Integration Bus",
     "IBM App Connect Enterprise",
     "IBM DataPower",
+    "IBM WSRR",
+    "ESQL",
+    "DFDL",
     "Docker",
     "OpenShift",
+    "AWS",
     "COBOL",
     "AI-Assisted Development",
     "Claude Code",
   ],
+  knowsLanguage: [
+    { "@type": "Language", name: "Spanish" },
+    { "@type": "Language", name: "English" },
+  ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidad Central de Colombia",
+  },
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    name: "AWS Technical Professional",
+    credentialCategory: "certificate",
+    recognizedBy: { "@type": "Organization", name: "Amazon Web Services" },
+  },
 };
 
 export default function RootLayout({

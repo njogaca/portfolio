@@ -85,7 +85,7 @@ export default function Image() {
                 marginTop: 12,
               }}
             >
-              Middleware · Cloud Native · IBM MQ · IIB/ACE · COBOL
+              IBM MQ · IIB/ACE · DataPower · Docker · OpenShift · AWS
             </div>
             <div
               style={{

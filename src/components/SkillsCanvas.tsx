@@ -42,6 +42,7 @@ const skillData = [
   { name: "Linux", icon: "🐧", color: "#E8C840", category: "cloud" },
   { name: "CI/CD", icon: "⚙️", color: "#4ade80", category: "cloud" },
   { name: "Azure DevOps", icon: "Az", color: "#0078D4", category: "cloud" },
+  { name: "AWS", icon: "AWS", color: "#FF9900", category: "cloud" },
   // Protocols & Data
   { name: "REST", icon: "API", color: "#4ade80", category: "proto" },
   { name: "SOAP", icon: "XML", color: "#9B7ED8", category: "proto" },
@@ -64,6 +65,8 @@ const connectionDefs: [string, string, number][] = [
   ["Docker", "OpenShift", 0.7], ["Docker", "Linux", 0.6],
   ["CI/CD", "Azure DevOps", 0.8], ["Docker", "CI/CD", 0.6],
   ["Kubernetes", "CI/CD", 0.5],
+  ["AWS", "Docker", 0.6], ["AWS", "Kubernetes", 0.5], ["AWS", "Linux", 0.5],
+  ["AWS", "CI/CD", 0.4],
   // Cross-cluster
   ["Java", "IIB", 0.7], ["Java", "ACE", 0.6],
   ["IIB", "Docker", 0.4], ["ACE", "Docker", 0.5],

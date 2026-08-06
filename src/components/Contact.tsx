@@ -154,6 +154,22 @@ export default function Contact() {
                     <span className="syntax-punctuation">,</span>
                   </p>
                   <p className="pl-4">
+                    <span className="syntax-variable">
+                      &quot;work_authorization&quot;
+                    </span>
+                    <span className="syntax-punctuation">: </span>
+                    <span className="syntax-string">
+                      &quot;US — no sponsorship required&quot;
+                    </span>
+                    <span className="syntax-punctuation">,</span>
+                  </p>
+                  <p className="pl-4">
+                    <span className="syntax-variable">&quot;relocation&quot;</span>
+                    <span className="syntax-punctuation">: </span>
+                    <span className="syntax-string">&quot;open&quot;</span>
+                    <span className="syntax-punctuation">,</span>
+                  </p>
+                  <p className="pl-4">
                     <span className="syntax-variable">&quot;linkedin&quot;</span>
                     <span className="syntax-punctuation">: </span>
                     <a

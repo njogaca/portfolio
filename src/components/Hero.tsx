@@ -33,8 +33,8 @@ const codeLines: TokenLine[] = [
 ];
 
 const techBadges = [
-  "IBM MQ", "IIB/ACE", "DataPower", "Docker", "OpenShift",
-  "Java", "Python", "COBOL", "CI/CD", "REST APIs",
+  "IBM MQ", "IIB/ACE", "ESQL", "DFDL", "DataPower",
+  "Docker", "OpenShift", "AWS", "Python", "COBOL",
 ];
 
 export default function Hero() {
@@ -65,8 +65,13 @@ export default function Hero() {
           </div>
 
           <p className="text-lg text-dark-100 max-w-lg">
-            Integration Engineer with 8+ years of experience designing middleware
-            solutions for Tier-1 banks processing over 500K daily transactions.
+            Integration Engineer with 8+ years building and operating enterprise
+            middleware on IBM Integration Bus and IBM MQ for Tier-1 banks
+            processing 500K+ daily transactions.
+          </p>
+          <p className="text-sm font-mono text-dark-100/80 max-w-lg">
+            Atlanta Metro, GA · open to relocation · authorized to work in the
+            U.S. — no sponsorship required
           </p>
 
           <div className="flex flex-wrap gap-2">
